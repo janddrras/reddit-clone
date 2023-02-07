@@ -4,10 +4,10 @@ import { Flex, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import React from 'react'
 
 type SearchInputProps = {
-  // user:
+  user: any
 }
 
-const SearchInput: React.FC<SearchInputProps> = () => {
+const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
   return (
     <Flex flexGrow={1} mr={2} align='center'>
       <InputGroup>
