@@ -79,7 +79,5 @@ const useCommunityData = () => {
 
   return { communityStateValue, onJoinOrLeaveCommunity, loading, error }
 }
+
 export default useCommunityData
-function decrement(arg0: number): any {
-  throw new Error('Function not implemented.')
-}

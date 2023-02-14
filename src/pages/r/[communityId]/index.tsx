@@ -1,5 +1,6 @@
 import { Community } from '@/atoms/communitiesAtom'
 import CommunityNotFound from '@/components/community/CommunityNotFound'
+import CreatePostLink from '@/components/community/CreatePostLink'
 import Header from '@/components/community/Header'
 import PageContentLayout from '@/components/layout/PageContentLayout'
 import { firestore } from '@/firebase/clientApp'
@@ -20,7 +21,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
       <Header communityData={communityData} />
       <PageContentLayout>
         <>
-          <div>text1</div>
+          <CreatePostLink />
         </>
         <>
           <div>text2</div>
