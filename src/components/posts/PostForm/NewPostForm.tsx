@@ -74,7 +74,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
   }
   const handleCreatePost = async () => {
     const { communityId } = router.query
-    const newPost: Post = {
+    const newPost = {
       communityId: communityId as string,
       creatorId: user?.uid,
       creatorDisplayName: user.email!.split('@')[0],
@@ -92,13 +92,13 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
         await uploadString(imgRef, selectedFile, 'data_url')
         const downloadUrl = await getDownloadURL(imgRef)
         await updateDoc(postDocRef, { imgUrl: downloadUrl })
+        router.back()
       }
     } catch (error: any) {
       console.log('create post error', error.message)
       setError(true)
     }
     setLoading(false)
-    router.back()
   }
 
   return (
