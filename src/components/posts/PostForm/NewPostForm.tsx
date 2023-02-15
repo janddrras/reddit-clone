@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 import { addDoc, collection, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore'
 import { firestore, storage } from '@/firebase/clientApp'
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
+import useSelectFile from '@/hooks/useSelectFile'
 
 type NewPostFormProps = {
   user: User
@@ -52,7 +53,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
   const [textInputs, setTextInputs] = useState({ title: '', body: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [selectedFile, setSelectedFile] = useState<string>()
+  const { selectedFile, setSelectedFile, onSelectFile } = useSelectFile()
 
   const onTextChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
@@ -60,18 +61,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
     } = event
     setTextInputs((state) => ({ ...state, [name]: value }))
   }
-  const onSelectImg = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const reader = new FileReader()
-    const url = event.target.files?.[0]
-    if (url) {
-      reader.readAsDataURL(url)
-    }
-    reader.onload = (readerEvent) => {
-      if (readerEvent.target?.result) {
-        setSelectedFile(readerEvent.target.result as string)
-      }
-    }
-  }
+
   const handleCreatePost = async () => {
     const { communityId } = router.query
     const newPost = {
@@ -125,7 +115,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
         {selectedTab === 'Images & Video' && (
           <ImageUpload
             setSelectedTab={setSelectedTab}
-            onSelectImage={onSelectImg}
+            onSelectImage={onSelectFile}
             selectedFile={selectedFile}
             setSelectedFile={setSelectedFile}
           />

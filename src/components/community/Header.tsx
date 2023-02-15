@@ -18,11 +18,11 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
       <Box height='50%' bg='blue.400' />
       <Flex justifyContent='center' bg='white' height='50%'>
         <Flex width='95%' maxWidth='860px'>
-          {communityData.imageUrl ? (
+          {communityStateValue.currentCommunity?.imageUrl ? (
             <Image
               borderRadius='full'
               boxSize='66px'
-              src={communityData.imageUrl}
+              src={communityStateValue.currentCommunity?.imageUrl}
               alt='Dan Abramov'
               position='relative'
               top={-3}

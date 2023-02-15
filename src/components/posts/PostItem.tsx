@@ -15,7 +15,6 @@ import {
 } from 'react-icons/io5'
 import { Post } from '@/atoms/postsAtom'
 import Link from 'next/link'
-import error from 'next/error'
 
 export type PostItemContentProps = {
   post: Post
