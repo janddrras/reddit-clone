@@ -18,13 +18,7 @@ import Link from 'next/link'
 
 export type PostItemContentProps = {
   post: Post
-  onVote: (
-    event: React.MouseEvent<SVGElement, MouseEvent>,
-    post: Post,
-    vote: number,
-    communityId: string,
-    postIdx?: number
-  ) => void
+  onVote: (post: Post, vote: number, communityId: string, postIdx?: number) => void
   onDeletePost: (post: Post) => Promise<boolean>
   userIsCreator: boolean
   onSelectPost?: (value: Post, postIdx: number) => void
@@ -89,7 +83,7 @@ const PostItem: React.FC<PostItemContentProps> = (props) => {
           color={userVoteValue === 1 ? 'brand.100' : 'gray.400'}
           fontSize={22}
           cursor='pointer'
-          onClick={(event) => onVote(event, post, 1, post.communityId)}
+          onClick={() => onVote(post, 1, post.communityId)}
         />
         <Text fontSize='9pt' fontWeight={600}>
           {post.voteStatus}
@@ -99,7 +93,7 @@ const PostItem: React.FC<PostItemContentProps> = (props) => {
           color={userVoteValue === -1 ? '#4379FF' : 'gray.400'}
           fontSize={22}
           cursor='pointer'
-          onClick={(event) => onVote(event, post, -1, post.communityId)}
+          onClick={() => onVote(post, -1, post.communityId)}
         />
       </Flex>
       <Flex direction='column' width='100%'>
