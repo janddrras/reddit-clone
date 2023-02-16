@@ -3,11 +3,9 @@ import React, { useState } from 'react'
 import { BiPoll } from 'react-icons/bi'
 import { BsLink45Deg, BsMic } from 'react-icons/bs'
 import { IoDocumentText, IoImageOutline } from 'react-icons/io5'
-import { AiFillCloseCircle } from 'react-icons/ai'
 import TabItem from './TabItem'
 import TextInputs from './TextInputs'
 import ImageUpload from './ImageUpload'
-import { Post } from '@/atoms/postsAtom'
 import { User } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { addDoc, collection, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore'
@@ -82,8 +80,8 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
         await uploadString(imgRef, selectedFile, 'data_url')
         const downloadUrl = await getDownloadURL(imgRef)
         await updateDoc(postDocRef, { imgUrl: downloadUrl })
-        router.back()
       }
+      router.back()
     } catch (error: any) {
       console.log('create post error', error.message)
       setError(true)
