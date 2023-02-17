@@ -2,6 +2,7 @@
 import { Post } from '@/atoms/postsAtom'
 import About from '@/components/community/About'
 import PageContentLayout from '@/components/layout/PageContentLayout'
+import Comments from '@/components/posts/comments/Comments'
 import PostItem from '@/components/posts/PostItem'
 import { auth, firestore } from '@/firebase/clientApp'
 import useCommunityData from '@/hooks/useCommunityData'
@@ -39,8 +40,8 @@ const PostPage: React.FC = () => {
 
   return (
     <PageContentLayout>
-      <>
-        {postStateValue.selectedPost && (
+      {postStateValue.selectedPost && (
+        <>
           <PostItem
             post={postStateValue.selectedPost}
             userIsCreator={user?.uid === postStateValue.selectedPost?.creatorId}
@@ -51,8 +52,13 @@ const PostPage: React.FC = () => {
             onDeletePost={onDeletePost}
             onVote={onVote}
           />
-        )}
-      </>
+          <Comments
+            user={user}
+            selectedPost={postStateValue.selectedPost}
+            communityId={communityStateValue.currentCommunity?.id as string}
+          />
+        </>
+      )}
       <>
         {communityStateValue.currentCommunity && (
           <About communityData={communityStateValue.currentCommunity} />
