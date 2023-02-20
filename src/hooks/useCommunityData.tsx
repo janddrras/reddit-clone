@@ -47,7 +47,8 @@ const useCommunityData = () => {
       const batch = writeBatch(firestore)
       const newSnippet: CommunitySnippet = {
         communityId: communityData.id,
-        imageUrl: communityData.imageUrl || ''
+        imageUrl: communityData.imageUrl || '',
+        isModerator: user?.uid === communityData.creatorId
       }
       batch.set(doc(firestore, `users/${user?.uid}/communitySnippets`, communityData.id), newSnippet)
       batch.update(doc(firestore, 'communities', communityData.id), { numberOfMembers: increment(1) })
