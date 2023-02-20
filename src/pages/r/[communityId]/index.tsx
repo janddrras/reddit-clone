@@ -26,7 +26,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
 
   useEffect(() => {
     setCommunityStateValue((prev) => ({ ...prev, currentCommunity: communityData }))
-  }, [])
+  }, [communityData])
 
   return (
     <>
