@@ -13,7 +13,7 @@ const PageContentLayout: React.FC<PageContentLayoutProps> = ({ children, maxWidt
         <Flex direction='column' width={{ base: '100%', md: '65%' }} mr={{ base: 0, md: 6 }}>
           {children && children[0 as keyof typeof children]}
         </Flex>
-        <Box display={{ base: 'none', md: 'flex' }} flexDirection='column' flexGrow={1}>
+        <Box display={{ base: 'none', md: 'flex' }} flexDirection='column' flexGrow={1} gap={4}>
           {children && children[1 as keyof typeof children]}
         </Box>
       </Flex>
